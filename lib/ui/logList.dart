@@ -10,7 +10,7 @@ class LogsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        child: LogList(sampleLogs),
+        child: LogList(_logs),
       ),
     );
   }
@@ -31,15 +31,14 @@ class LogList extends StatelessWidget {
   }
 
   List<_LogListItem> _buildLogList() {
-    return _logs.map((contact) => _LogListItem(contact))
+    return _logs.map((log) => _LogListItem(log, _logs))
                     .toList();
   }
-
 }
 
 class _LogListItem extends ListTile {
 
-  _LogListItem(Log log) :
+  _LogListItem(Log log, List _logs) :
     super(
       title : Text(log.duration.toStringAsFixed(1) + ' - ' + log.project),
       subtitle: Text(log.remarks),
@@ -47,7 +46,7 @@ class _LogListItem extends ListTile {
         // color: Colors.white,
         textColor: Colors.black54,
         onPressed: () {
-          print('hi');
+          // remove();
         },
         child: Text(
           '[ Delete ]',

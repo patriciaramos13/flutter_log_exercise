@@ -10,7 +10,7 @@ class LogForm extends StatefulWidget {
 class _LogFormState extends State<LogForm> {
 	final _projects = ['Hydra','Dragon P2P', 'Dragon'];
 	final double _formDistance = 5.0;
-	List<Log> workLogs;
+	List<Log> workLogs = sampleLogs;
   double totalHours = 0.00;
 
 	String _project = 'Hydra';
@@ -126,7 +126,7 @@ class _LogFormState extends State<LogForm> {
 							style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
 						),
             Text(
-							'Total log for the day',
+							'Total log for the day ' + this.totalHours.toStringAsFixed(1) + 'hours',
 							textAlign: TextAlign.left,
 							style: TextStyle(fontSize: 15.0),
 						),
@@ -156,7 +156,8 @@ class _LogFormState extends State<LogForm> {
     workLogs.add(log);
     
     setState(() {
-      workLogs = workLogs;
+      this.workLogs = workLogs;
+      this.totalHours = this.totalHours + _duration;
     });
   }
 }
