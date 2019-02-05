@@ -5,8 +5,10 @@ class LogsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: LogList(sampleLogs),
+    return Expanded(
+      child: Container(
+        child: LogList(sampleLogs),
+      ),
     );
   }
 

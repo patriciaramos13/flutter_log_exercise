@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_exercise/ui/logList.dart';
-import 'package:flutter_exercise/ui/logData.dart';
 
 class LogForm extends StatefulWidget {
   @override
@@ -95,10 +94,10 @@ class _LogFormState extends State<LogForm> {
 						RaisedButton(
 							color: Theme.of(context).primaryColorDark,
 							textColor: Theme.of(context).primaryColorLight,
-							padding: EdgeInsets.all(5.0),
 							onPressed: () {
 								_postLog();
 							},
+              padding: EdgeInsets.all(15.0),
 							child: Text(
 								'Submit',
 								textScaleFactor: 1.5,
