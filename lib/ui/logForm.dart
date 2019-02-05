@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_exercise/ui/logData.dart';
 import 'package:flutter_exercise/ui/logList.dart';
 
 class LogForm extends StatefulWidget {
@@ -9,7 +10,9 @@ class LogForm extends StatefulWidget {
 class _LogFormState extends State<LogForm> {
 	final _projects = ['Hydra','Dragon P2P', 'Dragon'];
 	final double _formDistance = 5.0;
-	// List<Log> workLogs;
+	List<Log> workLogs;
+  double totalHours = 0.00;
+
 	String _project = 'Hydra';
 
 	TextEditingController durationController = TextEditingController();
@@ -30,11 +33,17 @@ class _LogFormState extends State<LogForm> {
 					crossAxisAlignment: CrossAxisAlignment.stretch,
 					children: <Widget>[
 						// New Log Title
-						Text(
-							'New Log',
-							textAlign: TextAlign.left,
-							style: TextStyle(fontWeight: FontWeight.bold),
-						),
+						Padding(
+              padding: EdgeInsets.only(
+								top: _formDistance,
+								bottom: _formDistance
+							),
+              child: Text(
+						  	'New Log',
+							  textAlign: TextAlign.left,
+							  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+						  ),
+            ),
 						// Duration TextInput
 						Padding(
 							padding: EdgeInsets.only(
@@ -91,24 +100,37 @@ class _LogFormState extends State<LogForm> {
 							)
 						),
 						// Submit Button
-						RaisedButton(
-							color: Theme.of(context).primaryColorDark,
-							textColor: Theme.of(context).primaryColorLight,
-							onPressed: () {
-								_postLog();
-							},
-              padding: EdgeInsets.all(15.0),
-							child: Text(
-								'Submit',
-								textScaleFactor: 1.5,
-							),
-						),
+						Container(
+              margin: const EdgeInsets.only(top: 10.0),
+              child: RaisedButton(
+                color: Theme.of(context).primaryColorDark,
+                textColor: Theme.of(context).primaryColorLight,
+                onPressed: () {
+                  _postLog();
+                },
+                padding: EdgeInsets.all(15.0),
+                child: Text(
+                  'Submit',
+                  textScaleFactor: 1.5,
+                ),
+              ),
+            ),
 						// Divider
 						Divider(
 							height: 50.0,
 							color: Colors.black87,
 						),
-						LogsPage(),
+            Text(
+							'Logs',
+							textAlign: TextAlign.left,
+							style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+						),
+            Text(
+							'Total log for the day',
+							textAlign: TextAlign.left,
+							style: TextStyle(fontSize: 15.0),
+						),
+						LogsPage(workLogs),
 					],
 				),
 			)
@@ -121,14 +143,20 @@ class _LogFormState extends State<LogForm> {
 		});
 	}
 
-  	void _postLog() {
-		double _duration = double.parse(durationController.text);
-		String _remarks = remarksController.text;
+  void _postLog() {
+    double _duration = double.parse(durationController.text);
+    String _remarks = remarksController.text;
 
-		// Log(
-		// 	duration: _duration,
-		// 	project: _project,
-		// 	remarks: _remarks
-		// );
-  	}
+    Log log = Log(
+      duration: _duration,
+      project: _project,
+      remarks: _remarks
+    );
+
+    workLogs.add(log);
+    
+    setState(() {
+      workLogs = workLogs;
+    });
+  }
 }

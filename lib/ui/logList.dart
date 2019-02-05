@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_exercise/ui/logData.dart';
 
 class LogsPage extends StatelessWidget {
+  final List<Log> _logs;
+
+  LogsPage(this._logs);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +26,6 @@ class LogList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-          padding: EdgeInsets.symmetric(vertical: 8.0),
           children: _buildLogList()
         );
   }
@@ -39,8 +41,17 @@ class _LogListItem extends ListTile {
 
   _LogListItem(Log log) :
     super(
-      title : Text(log.duration.toStringAsFixed(2)),
+      title : Text(log.duration.toStringAsFixed(1) + ' - ' + log.project),
       subtitle: Text(log.remarks),
+      trailing: FlatButton(
+        // color: Colors.white,
+        textColor: Colors.black54,
+        onPressed: () {
+          print('hi');
+        },
+        child: Text(
+          '[ Delete ]',
+        ),
+      ),
     );
-
 }
