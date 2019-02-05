@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_exercise/ui/logData.dart';
 
+class LogsPage extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: LogList(sampleLogs),
+    );
+  }
+
+}
+
 class LogList extends StatelessWidget {
 
   final List<Log> _logs;

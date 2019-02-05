@@ -105,11 +105,11 @@ class _LogFormState extends State<LogForm> {
 							),
 						),
 						// Divider
-						// Divider(
-						// 	height: 50.0,
-						// 	color: Colors.black87,
-						// ),
-						LogList(sampleLogs),
+						Divider(
+							height: 50.0,
+							color: Colors.black87,
+						),
+						LogsPage(),
 					],
 				),
 			)

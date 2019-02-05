@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_exercise/ui/logForm.dart';
+import 'package:flutter_exercise/ui/logList.dart';
 
 void main() => runApp(MyApp());
 
